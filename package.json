@@ -1,0 +1,19 @@
+{
+  "name": "mygame",
+  "version": "1.0.0",
+  "description": "myFirstGame",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MrMa-rio/myGame.git"
+  },
+  "author": "Mario Alberto",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MrMa-rio/myGame/issues"
+  },
+  "homepage": "https://github.com/MrMa-rio/myGame#readme"
+}
