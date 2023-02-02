@@ -1,6 +1,6 @@
  const screen = document.getElementById('screen')
  const context = screen.getContext('2d')
- const currentJogador1 = 'jogador1' //temp
+ 
 
  
 const game = createGame()
@@ -56,34 +56,82 @@ function createGame(){
  }
 
     function movePlayer(command){
+
         console.log(`movendo o ${command.jogadorID} com a tecla ${command.keyPress}`)
-    
+        const acceptMoves = {
+                ArrowUp(jogador){
+                    
+                    console.log(`${jogador} movendo para cima`)
+                    if(jogador.y > 0){
+                        jogador.y = jogador.y - 1
+                    }
+                    
+                    
+                },
+                w(jogador){
+
+                    console.log(`${jogador} movendo para cima`)
+                    if(jogador.y > 0){
+                        jogador.y = jogador.y - 1
+                    }
+                },
+                ArrowDown(jogador){
+
+                    console.log(`${jogador} movendo para baixo`)
+                    if(jogador.y + 1 < screen.height){
+                        jogador.y = jogador.y + 1
+                    }
+                },
+                s(jogador){
+
+                    console.log(`${jogador} movendo para baixo`)
+                    if(jogador.y + 1 < screen.height){
+                        jogador.y = jogador.y + 1
+                    }
+                },
+                ArrowLeft(jogador){
+
+                    console.log(`${jogador} movendo para esquerda`)
+                    if(jogador.x > 0){
+                        jogador.x = jogador.x - 1
+                    }
+                },
+                a(jogador){
+
+                    console.log(`${jogador} movendo para esquerda`)
+                    if(jogador.x > 0){
+                        jogador.x = jogador.x - 1
+                    }
+                },
+                ArrowRight(jogador){
+
+                    console.log(`${jogador} movendo para direita`)
+                    if(jogador.x + 1 < screen.width){
+                        jogador.x = jogador.x + 1
+                    }
+                },
+                d(jogador){
+
+                    console.log(`${jogador} movendo para direita`)
+                    if(jogador.x + 1 < screen.width){
+                        jogador.x = jogador.x + 1
+                    }
+                },
+            }
         const jogador = game.state.jogadores[command.jogadorID]
-        
         const keyPress = command.keyPress
-
-        if(keyPress === 'w' && jogador.y - 1 >= 0 || keyPress === 'ArrowUp' && jogador.y - 1 >= 0 ){
-            jogador.y = jogador.y - 1
-            return
-
+        const moveFunction = acceptMoves[keyPress]
+        if(moveFunction){
+            moveFunction(jogador)
         }
-        if(keyPress === 'a' && jogador.x - 1 >= 0 || keyPress === 'ArrowLeft' && jogador.x - 1 >= 0 ){
-            jogador.x = jogador.x - 1
-            return
-        }
-        if(keyPress === "s" && jogador.y + 1 < screen.height || keyPress === "ArrowDown" && jogador.y + 1 < screen.height){
-            jogador.y = jogador.y + 1
-            return
-        }
-        if(keyPress === 'd' && jogador.x + 1 < screen.width || keyPress === "ArrowRight" && jogador.x + 1 < screen.width){
-            jogador.x = jogador.x + 1
-            return
-        } 
+        
+        return
     }
 
     return{
         movePlayer,
         state,
+        
     }
 }
 function renderScreen(){
@@ -107,12 +155,3 @@ function renderScreen(){
     requestAnimationFrame(renderScreen)
     
 }
-
-
-
-
-
-
-
- 
-
