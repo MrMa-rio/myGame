@@ -20,7 +20,7 @@ function createKeyboardListener(){
     }
     function notifyAll(command){
 
-        console.log(`Notificando ${state.observers.length} observers`)
+        //console.log(`Notificando ${state.observers.length} observers`)
 
         for(const observerFunction of state.observers){
             observerFunction(command)
@@ -46,18 +46,49 @@ function createKeyboardListener(){
 function createGame(){
 
     const state = {
-    jogadores: {
-        'jogador1':{x:1,y:1},
-        'jogador2':{x:9,y:9}
-    },
-    frutas: {
-        'fruta1':{x:3,y:1}
+    jogadores: {},
+    frutas: {},
     }
- }
+    function addJogador(command){
+
+        const jogadorID = command.jogadorID
+        const positionX = command.positionX
+        const positionY = command.positionY
+
+        state.jogadores[jogadorID] = {
+            x: positionX,
+            y: positionY,
+        }
+
+    }
+
+    function addFruta(command){
+
+        const frutaID = command.frutaID
+        const positionX = command.positionX
+        const positionY = command.positionY
+
+        state.frutas[frutaID] = {
+            x: positionX,
+            y: positionY,
+        }
+    }
+
+    function removeJogador(command){
+
+        const jogadorID = command.jogadorID
+        delete state.jogadores[jogadorID]
+    }
+
+    function removeFruta(command){
+
+        const frutaID = command.frutaID
+        delete state.frutas[frutaID]
+    }
 
     function movePlayer(command){
 
-        console.log(`movendo o ${command.jogadorID} com a tecla ${command.keyPress}`)
+        //console.log(`movendo o ${command.jogadorID} com a tecla ${command.keyPress}`)
         const acceptMoves = {
                 ArrowUp(jogador){
                     
@@ -119,16 +150,44 @@ function createGame(){
                 },
             }
         const jogador = game.state.jogadores[command.jogadorID]
+        const jogadorID = command.jogadorID
         const keyPress = command.keyPress
         const moveFunction = acceptMoves[keyPress]
-        if(moveFunction){
+        if(jogador && moveFunction){
             moveFunction(jogador)
+            checkForFruitCollision(jogadorID)
         }
         
-        return
+        
     }
 
+    function checkForFruitCollision(jogadorID){
+
+        
+        const jogador = state.jogadores[jogadorID]
+
+        for(const frutaID in state.frutas){
+            const fruta = state.frutas[frutaID]
+            
+            console.log(`Checando ${jogadorID} e ${frutaID}`)
+
+            if(jogador.x === fruta.x && jogador.y === fruta.y){
+                console.log(`Colisao entre ${jogadorID} e ${frutaID}`)
+                removeFruta({frutaID: frutaID})
+            }
+        }
+
+        
+
+
+    }
+    
     return{
+        addJogador,
+        checkForFruitCollision,
+        removeJogador,
+        addFruta,
+        removeFruta,
         movePlayer,
         state,
         
