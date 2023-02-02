@@ -1,53 +1,12 @@
- const screen = document.getElementById('screen')
- const context = screen.getContext('2d')
- 
-
- 
-const game = createGame()
-const KeyboardListener = createKeyboardListener()
-KeyboardListener.subscribe(game.movePlayer)
-renderScreen()
-
-function createKeyboardListener(){
-    document.addEventListener('keydown', handleKeydown)
-
-    const state = {
-        observers: []
-    }
-
-    function subscribe(observerFunction){
-        state.observers.push(observerFunction)
-    }
-    function notifyAll(command){
-
-        //console.log(`Notificando ${state.observers.length} observers`)
-
-        for(const observerFunction of state.observers){
-            observerFunction(command)
-        }
-    }
-    function handleKeydown(event){
-
-        const keyPress = event.key
-    
-        const command = {
-            jogadorID: 'jogador1',
-            keyPress,
-        }
-    
-        notifyAll(command)
-        
-    }
-    return{
-        subscribe
-    }
-
-}
-function createGame(){
+export default function createGame(){
 
     const state = {
     jogadores: {},
     frutas: {},
+    screen: {
+        width: 20,
+        height: 20
+    }
     }
     function addJogador(command){
 
@@ -109,14 +68,14 @@ function createGame(){
                 ArrowDown(jogador){
 
                     console.log(`${jogador} movendo para baixo`)
-                    if(jogador.y + 1 < screen.height){
+                    if(jogador.y + 1 < state.screen.height){
                         jogador.y = jogador.y + 1
                     }
                 },
                 s(jogador){
 
                     console.log(`${jogador} movendo para baixo`)
-                    if(jogador.y + 1 < screen.height){
+                    if(jogador.y + 1 < state.screen.height){
                         jogador.y = jogador.y + 1
                     }
                 },
@@ -137,19 +96,19 @@ function createGame(){
                 ArrowRight(jogador){
 
                     console.log(`${jogador} movendo para direita`)
-                    if(jogador.x + 1 < screen.width){
+                    if(jogador.x + 1 < state.screen.width){
                         jogador.x = jogador.x + 1
                     }
                 },
                 d(jogador){
 
                     console.log(`${jogador} movendo para direita`)
-                    if(jogador.x + 1 < screen.width){
+                    if(jogador.x + 1 < state.screen.width){
                         jogador.x = jogador.x + 1
                     }
                 },
             }
-        const jogador = game.state.jogadores[command.jogadorID]
+        const jogador = state.jogadores[command.jogadorID]
         const jogadorID = command.jogadorID
         const keyPress = command.keyPress
         const moveFunction = acceptMoves[keyPress]
@@ -192,25 +151,4 @@ function createGame(){
         state,
         
     }
-}
-function renderScreen(){
-    context.fillStyle = '#fff'
-    context.clearRect(0,0,20,20)
-    
-    for(const indexJogador in game.state.jogadores){
-
-        const jogador = game.state.jogadores[indexJogador]
-        context.fillStyle = '#000'
-        context.fillRect(jogador.x,jogador.y,1,1)
-    
-    }
-    for(const indexFruta in game.state.frutas){
-        
-        const fruta = game.state.frutas[indexFruta]
-        context.fillStyle = 'green'
-        context.fillRect(fruta.x,fruta.y,1,1)
-    }
-    
-    requestAnimationFrame(renderScreen)
-    
 }
