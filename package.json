@@ -1,19 +1,25 @@
 {
   "name": "mygame",
   "version": "1.0.0",
-  "description": "myFirstGame",
-  "main": "index.html",
+  "description": "",
+  "main": "server.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MrMa-rio/myGame.git"
   },
-  "author": "Mario Alberto",
+  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/MrMa-rio/myGame/issues"
   },
-  "homepage": "https://github.com/MrMa-rio/myGame#readme"
+  "homepage": "https://github.com/MrMa-rio/myGame#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "socket.io": "^4.5.4"
+  }
 }

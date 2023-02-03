@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+canvas#screen{
+    border: 10px solid rgb(136, 136, 136);
+    
+    width: 700px;
+    height: 700px;
+    
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+}
