@@ -8,16 +8,40 @@ export default function createGame(){
         height: 20
     }
     }
+    const observers = []
+
+    function subscribe(observerFunction){
+        observers.push(observerFunction)
+    }
+
+    function notifyAll(command){
+
+        for(const observerFunction of observers){
+            observerFunction(command)
+        }
+    }
+    
+    
+    function setState(newState){
+        Object.assign(state, newState)
+    }
     function addJogador(command){
 
         const jogadorID = command.jogadorID
-        const positionX = command.positionX
-        const positionY = command.positionY
+        const positionX = 'positionX' in command ? command.positionX : Math.floor(Math.random() * state.screen.width)
+        const positionY = 'positionY' in command ? command.positionY : Math.floor(Math.random() * state.screen.height)
 
         state.jogadores[jogadorID] = {
             x: positionX,
             y: positionY,
         }
+        
+        notifyAll({
+            type: 'add-Jogador',
+            jogadorID: jogadorID,
+            positionX: positionX,
+            positionY: positionY
+        })
 
     }
 
@@ -37,6 +61,11 @@ export default function createGame(){
 
         const jogadorID = command.jogadorID
         delete state.jogadores[jogadorID]
+
+        notifyAll({
+            type: 'remove-Jogador',
+            jogadorID: jogadorID
+        })
     }
 
     function removeFruta(command){
@@ -145,10 +174,12 @@ export default function createGame(){
         addJogador,
         checkForFruitCollision,
         removeJogador,
+        setState,
         addFruta,
         removeFruta,
         movePlayer,
         state,
+        subscribe,
         
     }
 }

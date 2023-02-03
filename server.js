@@ -7,9 +7,10 @@ const server = http.createServer(app)
 const sockets = new Server(server)
 const game = createGame()
 
-game.addJogador({jogadorID: 'jogador1', positionX: 2, positionY: 4})
-game.addJogador({jogadorID: 'jogador2', positionX: 6, positionY: 4})
-game.addFruta({frutaID: 'frutinha1', positionX: 7, positionY: 4})
+game.subscribe((command) => {
+    console.log(`Emitindo ${command.type}`)
+    sockets.emit(command.type, command)
+})
 console.log(game.state)
 
 app.use(express.static('public'))
@@ -17,7 +18,17 @@ app.use(express.static('public'))
 sockets.on('connection', (socket) => {
     const jogadorID = socket.id
     console.log(`Jogador conectado no servidor com o ID:${jogadorID}`)
+    game.addJogador({jogadorID: jogadorID})
+    
+    socket.emit('estado', game.state)
+
+    socket.on('disconnect', () =>{
+        game.removeJogador({jogadorID:jogadorID})
+        console.log(`Jogador ID:${jogadorID} desconectado`)
+    })
 })
+
+
 server.listen(3000, () => {
-    console.log('Servindo na Porta 3000')
+    console.log('Servindo na Porta 3000');
 }) 

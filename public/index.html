@@ -10,14 +10,7 @@
 </head>
 <body>
     <canvas width="20" height="20" id="screen"></canvas>
-    <script type="module">
-        const socket = io()
-        socket.on('connect', () => {
-            const jogadorID = socket.id
-            
-            console.log(`Jogaodr conectado no Cliente com o ID:${jogadorID}`)
-        })
-    </script>
+    
    <script src="client.js" type="module"></script>
 </body>
 </html>
