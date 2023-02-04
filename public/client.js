@@ -25,6 +25,11 @@
             game.setState(state)
             KeyboardListener.registerJogadorID(jogadorID)
             KeyboardListener.subscribe(game.movePlayer)
+            KeyboardListener.subscribe((command) =>{
+                socket.emit('move-jogador', command)
+
+            })
+            
         })
         socket.on('add-Jogador', (command) => {
 
@@ -34,4 +39,27 @@
         socket.on('remove-Jogador', (command) =>{
 
             game.removeJogador(command)
+        })
+
+        socket.on('move-jogador', (command) => {
+
+            console.log(`Recebendo  ${command.type} -> ${command.jogadorID}`)
+
+            const jogadorID = socket.id
+
+            if(jogadorID !== command.jogadorID){
+                game.movePlayer(command)
+            }
+            
+        })
+
+        socket.on('add-fruta', (command) => {
+
+            console.log('teste')
+            game.addFruta(command)
+        })
+        socket.on('remove-fruta', (command) =>{
+
+            console.log('removendooo')
+            game.removeFruta(command)
         })

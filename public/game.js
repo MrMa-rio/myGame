@@ -10,6 +10,11 @@ export default function createGame(){
     }
     const observers = []
 
+
+    function start(){
+        setInterval(addFruta, 10000)
+    }
+    
     function subscribe(observerFunction){
         observers.push(observerFunction)
     }
@@ -47,14 +52,17 @@ export default function createGame(){
 
     function addFruta(command){
 
-        const frutaID = command.frutaID
-        const positionX = command.positionX
-        const positionY = command.positionY
+        const frutaID = command ? command.frutaID : Math.floor(Math.random() * 10000000)
+        const positionX = command ? command.positionX : Math.floor(Math.random() * state.screen.width)
+        const positionY = command ? command.positionY : Math.floor(Math.random() * state.screen.height)
 
         state.frutas[frutaID] = {
             x: positionX,
             y: positionY,
         }
+
+        notifyAll({ type: 'add-fruta',frutaID: frutaID, positionX: positionX,positionY: positionY})
+
     }
 
     function removeJogador(command){
@@ -62,20 +70,19 @@ export default function createGame(){
         const jogadorID = command.jogadorID
         delete state.jogadores[jogadorID]
 
-        notifyAll({
-            type: 'remove-Jogador',
-            jogadorID: jogadorID
-        })
+        notifyAll({type: 'remove-Jogador', jogadorID: jogadorID})
     }
 
     function removeFruta(command){
 
         const frutaID = command.frutaID
         delete state.frutas[frutaID]
+
+        notifyAll({ type:'remove-fruta', frutaID:frutaID})
     }
 
     function movePlayer(command){
-
+        notifyAll(command)
         //console.log(`movendo o ${command.jogadorID} com a tecla ${command.keyPress}`)
         const acceptMoves = {
                 ArrowUp(jogador){
@@ -180,6 +187,7 @@ export default function createGame(){
         movePlayer,
         state,
         subscribe,
+        start,
         
     }
 }
