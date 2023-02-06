@@ -8,17 +8,17 @@ export default function createGame(){
         height: 20
     }
     }
-    const observers = []
-
+    let observers = []
+    
 
     function start(){
-        setInterval(addFruta, 10000)
+        setInterval(addFruta, 5000)
     }
     
     function subscribe(observerFunction){
         observers.push(observerFunction)
     }
-
+    
     function notifyAll(command){
 
         for(const observerFunction of observers){
@@ -87,7 +87,7 @@ export default function createGame(){
         const acceptMoves = {
                 ArrowUp(jogador){
                     
-                    console.log(`${jogador} movendo para cima`)
+                  //  console.log(`${jogador} movendo para cima`)
                     if(jogador.y > 0){
                         jogador.y = jogador.y - 1
                     }
@@ -96,49 +96,49 @@ export default function createGame(){
                 },
                 w(jogador){
 
-                    console.log(`${jogador} movendo para cima`)
+                   // console.log(`${jogador} movendo para cima`)
                     if(jogador.y > 0){
                         jogador.y = jogador.y - 1
                     }
                 },
                 ArrowDown(jogador){
 
-                    console.log(`${jogador} movendo para baixo`)
+                   // console.log(`${jogador} movendo para baixo`)
                     if(jogador.y + 1 < state.screen.height){
                         jogador.y = jogador.y + 1
                     }
                 },
                 s(jogador){
 
-                    console.log(`${jogador} movendo para baixo`)
+                   // console.log(`${jogador} movendo para baixo`)
                     if(jogador.y + 1 < state.screen.height){
                         jogador.y = jogador.y + 1
                     }
                 },
                 ArrowLeft(jogador){
 
-                    console.log(`${jogador} movendo para esquerda`)
+                    //console.log(`${jogador} movendo para esquerda`)
                     if(jogador.x > 0){
                         jogador.x = jogador.x - 1
                     }
                 },
                 a(jogador){
 
-                    console.log(`${jogador} movendo para esquerda`)
+                    //console.log(`${jogador} movendo para esquerda`)
                     if(jogador.x > 0){
                         jogador.x = jogador.x - 1
                     }
                 },
                 ArrowRight(jogador){
 
-                    console.log(`${jogador} movendo para direita`)
+                  //  console.log(`${jogador} movendo para direita`)
                     if(jogador.x + 1 < state.screen.width){
                         jogador.x = jogador.x + 1
                     }
                 },
                 d(jogador){
 
-                    console.log(`${jogador} movendo para direita`)
+                 //  console.log(`${jogador} movendo para direita`)
                     if(jogador.x + 1 < state.screen.width){
                         jogador.x = jogador.x + 1
                     }
@@ -164,7 +164,7 @@ export default function createGame(){
         for(const frutaID in state.frutas){
             const fruta = state.frutas[frutaID]
             
-            console.log(`Checando ${jogadorID} e ${frutaID}`)
+           // console.log(`Checando ${jogadorID} e ${frutaID}`)
 
             if(jogador.x === fruta.x && jogador.y === fruta.y){
                 console.log(`Colisao entre ${jogadorID} e ${frutaID}`)
@@ -188,6 +188,7 @@ export default function createGame(){
         state,
         subscribe,
         start,
+        
         
     }
 }

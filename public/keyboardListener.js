@@ -1,6 +1,9 @@
 export default function createKeyboardListener(document){
+   
     document.addEventListener('keydown', handleKeydown)
-
+    document.addEventListener('click', (result) => {
+        handleKeydown(`Arrow${result.target.value}`)
+    } )
     const state = {
         observers: [],
         jogadorID: null,
@@ -11,7 +14,6 @@ export default function createKeyboardListener(document){
         state.jogadorID = jogadorID
     }
 
-    
     function subscribe(observerFunction){
         state.observers.push(observerFunction)
     }
@@ -22,9 +24,9 @@ export default function createKeyboardListener(document){
         }
     }
     function handleKeydown(event){
-
-        const keyPress = event.key
-    
+        
+        const keyPress = event.key || event
+        //console.log(keyPress)
         const command = {
             type: 'move-jogador',
             jogadorID: state.jogadorID,

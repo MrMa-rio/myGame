@@ -4,12 +4,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-query.css" media="screen and (min-width: 790px)">
+    <link rel="stylesheet" href="style.css"media="screen and (max-width: 790px)">
     <script src="/socket.io/socket.io.js"></script>
     <title>myGame</title>
 </head>
 <body>
     <canvas width="20" height="20" id="screen"></canvas>
+    <div>
+        <div id="padButtons">
+            <div id="positionY">
+                <input class="button_" type="button" value="Up">
+                <input class="button_" type="button" value="Down">
+            </div>
+            <div id="positionX">
+                <input class="button_" type="button" value="Left">
+                <input class="button_" type="button" value="Right">
+            </div>
+        </div>
+    </div>
+    
     <script type="module">
          
     </script>

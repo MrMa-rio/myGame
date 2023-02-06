@@ -1,12 +1,58 @@
 @charset "UTF-8";
-
+body{
+    background-color: #1b1b1b;
+}
 canvas#screen{
-    border: 10px solid rgb(136, 136, 136);
-    
-    width: 700px;
-    height: 700px;
-    
+    border: 10px solid rgb(107, 88, 88);
+    background-color: #6d6262;
+    width: 92vw;
+    height: 46vh;
     image-rendering: crisp-edges;
     image-rendering: pixelated;
     image-rendering: -moz-crisp-edges;
+}
+div{
+   
+    background-color: grey;
+    height: 300px;
+    border-radius: 30px;
+    padding: 5px;
+    
+    
+}
+div#positionY{
+    
+    background-color: rgba(89, 100, 105, 0.178);
+    display: inline-block;
+    max-width: 150px;
+    max-height: 280px;
+    margin-left: 5vw;
+}
+div#positionY input{
+    background-color: rgba(58, 65, 68, 0.274);
+    display: block;
+    width: 100px;
+    height: 100px;
+    margin-top: 25px;
+    border: none;
+    border-radius: 35%;
+}
+div#positionX{
+    
+    background-color: rgba(89, 100, 105, 0.178);
+    background-color: rgba(89, 100, 105, 0.178);
+    display: inline-block;
+    width: 210px;
+    height: 130px;
+    margin-left: 2vw;
+    transform: translateY(-50px);
+}
+div#positionX input{
+    background-color: rgba(58, 65, 68, 0.274);
+    
+    width: 100px;
+    height: 100px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 35%;
 }
