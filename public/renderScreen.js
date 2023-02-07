@@ -2,7 +2,7 @@ export default function renderScreen(screen, game, requestAnimationFrame, jogado
 
     
     const context = screen.getContext('2d')
-    context.fillStyle = '#000'
+    context.fillStyle = '#6d6262'
     context.clearRect(0,0,20,20)
     
     for(const indexJogador in game.state.jogadores){

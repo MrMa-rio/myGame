@@ -7,6 +7,9 @@
 body{
     background-color: #1b1b1b;
 }
+div#secondScreen{
+    display: none;
+}
 canvas#screen{
     border: 10px solid rgb(107, 88, 88);
     background-color: #6d6262;

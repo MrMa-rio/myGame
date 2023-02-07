@@ -21,6 +21,9 @@ canvas#screen{
     image-rendering: pixelated;
     image-rendering: -moz-crisp-edges;
 }
+div#secondScreen{
+    display: none;
+}
 div#pad{
    
     background-color: grey;

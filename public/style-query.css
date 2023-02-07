@@ -1,9 +1,16 @@
 @charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Roboto', sans-serif;
+    font-variant: small-caps;
+}
 body{
     background-color: #1b1b1b;
 }
 canvas#screen{
-    border: 10px solid rgb(107, 88, 88);
+    border: 10px solid rgb(61, 51, 51);
     background-color: #6d6262;
     width: 700px;
     height: 700px;
@@ -15,7 +22,65 @@ canvas#screen{
     image-rendering: -moz-crisp-edges;
     
 }
+div#secondScreen{
+    position: absolute;
+    transform: translate(80vw,-60%);
+    width: 480px;
+    height: 900px;
+    border-radius: 0px 0px 20px 20px;
+    background-color: #6d6262;
+}
+div#secondScreen #playerScreen{
+    width: 480px;
+    height: 800px;
+    overflow: auto;
+}
+::-webkit-scrollbar{
+    background-color: #1b1b1b;
+    width: 10px;
+    height: 50px;
+}
+::-webkit-scrollbar-thumb{
 
+    background-color: #312219;
+
+}
+::-webkit-scrollbar-track{
+    
+    background-color: #383636;
+    height: 10px;
+
+}
+.players{
+    
+    list-style-type: none;
+    
+}
+.players h1{
+    text-align: center;
+    font-size: 2.2em;
+    text-decoration: underline;
+    position: fixed;
+    transform: translateY(-100%);
+    margin-left: 0px;
+    padding: 5px;
+    width: 470px;
+    background-color: #3b3535;
+    border-radius: 20px 20px 0px 0px;
+    margin-bottom: 25px;
+}
+.players p{
+    width: 460px;
+    text-align: center;
+    text-indent: 15px;
+    font-size: 1.4em;
+    color: #fff;
+    padding: 10px;
+    
+}
+.players p strong{
+    color: #1b1b1b;
+}
 .button_{
     display: none;
 }
