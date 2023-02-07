@@ -8,12 +8,15 @@ body{
     background-color: #1b1b1b;
 }
 canvas#screen{
-    border: 10px solid rgb(107, 88, 88);
+    border: 10px solid rgb(58, 48, 48);
+    border-radius: 10px;
+    box-shadow: 0px 0px 30px #000;
     background-color: #6d6262;
     width: 92vw;
     height: 45vh;
     display: block;
     margin: auto;
+    margin-top: 10px;
     image-rendering: crisp-edges;
     image-rendering: pixelated;
     image-rendering: -moz-crisp-edges;
@@ -21,10 +24,10 @@ canvas#screen{
 div#pad{
    
     background-color: grey;
-    height: 280px;
+    height: 310px;
     border-radius: 30px;
     padding: 5px;
-    transform: translateY(22%);
+    transform: translateY(38%);
     box-shadow: 0px 0px 30px #000;
     
 }
@@ -42,7 +45,7 @@ div#positionY{
     max-width: 150px;
     max-height: 280px;
     left: 25%;
-    transform: translate(50%, -20%);
+    transform: translate(78%, -13%);
 }
 div#positionY input{
     background-color: rgba(58, 65, 68, 0.274);
@@ -69,8 +72,8 @@ div#positionX{
     width: fit-content;
     height: fit-content;
     
-    margin-left: 3.2%;
-    transform: translateY(60%);
+    margin-left: 4%;
+    transform: translateY(80%);
 }
 div#positionX input{
     background-color: rgba(58, 65, 68, 0.274);
@@ -83,6 +86,6 @@ div#positionX input{
 }
 div#positionX input#x{
 
-    margin-right: 60px;
+    margin-right: 130px;
     
 }
