@@ -7,14 +7,14 @@
     font-variant: small-caps;
 }
 body{
-    background-color: #1b1b1b;
+    background-color: #101010;
 }
 canvas#screen{
     border: 10px solid rgb(61, 51, 51);
     background-color: #6d6262;
-    width: 700px;
-    height: 700px;
-    transform: translateY(5vh);
+    width: 500px;
+    height: 500px;
+    transform: translate(-30%,20%);
     display: block;
     margin: auto;
     image-rendering: crisp-edges;
@@ -24,9 +24,9 @@ canvas#screen{
 }
 div#secondScreen{
     position: absolute;
-    transform: translate(80vw,-60%);
+    transform: translate(70vw,-60%);
     width: 480px;
-    height: 900px;
+    height: 600px;
     border-radius: 0px 0px 20px 20px;
     background-color: #6d6262;
 }
@@ -38,7 +38,7 @@ div#secondScreen #playerScreen{
 ::-webkit-scrollbar{
     background-color: #1b1b1b;
     width: 10px;
-    height: 50px;
+    height: 0px;
 }
 ::-webkit-scrollbar-thumb{
 
@@ -48,7 +48,7 @@ div#secondScreen #playerScreen{
 ::-webkit-scrollbar-track{
     
     background-color: #383636;
-    height: 10px;
+    height: 5px;
 
 }
 .players{
@@ -69,7 +69,7 @@ div#secondScreen #playerScreen{
     border-radius: 20px 20px 0px 0px;
     margin-bottom: 25px;
 }
-.players p{
+.players > p{
     width: 460px;
     text-align: center;
     text-indent: 15px;

@@ -26,7 +26,7 @@ export default function createKeyboardListener(document){
     function handleKeydown(event){
         
         const keyPress = event.key || event
-        //console.log(keyPress)
+        console.log(keyPress)
         const command = {
             type: 'move-jogador',
             jogadorID: state.jogadorID,
@@ -38,7 +38,7 @@ export default function createKeyboardListener(document){
     }
     return{
         registerJogadorID,
-        subscribe
+        subscribe,
     }
 
 }

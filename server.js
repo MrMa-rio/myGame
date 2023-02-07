@@ -5,39 +5,36 @@ import { Server } from 'socket.io'
 const app = express()
 const server = http.createServer(app)
 const sockets = new Server(server)
-app.use(express.static('public'))
-
 
 const game = createGame()
 game.start()
+
 game.subscribe((command) => {
     console.log(`Emitindo ${command.type}`)
     sockets.emit(command.type, command)
 })
 
 
-
+app.use(express.static('public'))
 sockets.on('connection', (socket) => {
     
     const jogadorID = socket.id
     console.log(`Jogador conectado no servidor com o ID:${jogadorID}`);
     game.addJogador({jogadorID: jogadorID})
     
-    socket.emit('estado', game.state);
+    socket.emit('estado', game.state)
 
     socket.on('disconnect', () =>{
         
         game.removeJogador({jogadorID:jogadorID})
         console.log(`Jogador ID:${jogadorID} desconectado`)
         
-        
-  
-        
+    
     })
 
     socket.on('move-jogador', (command) => {
         command.jogadorID = jogadorID
-        command.type = 'move-Jogador'
+        command.type = 'move-jogador'
         game.movePlayer(command)
     })
     
