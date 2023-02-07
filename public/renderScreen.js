@@ -1,6 +1,5 @@
 export default function renderScreen(screen, game, requestAnimationFrame, jogadorID){
 
-    
     const context = screen.getContext('2d')
     context.clearRect(0,0,20,20)
     
@@ -9,15 +8,12 @@ export default function renderScreen(screen, game, requestAnimationFrame, jogado
             const jogador = game.state.jogadores[indexJogador]
             context.fillStyle = `#abcde0`
             context.fillRect(jogador.x,jogador.y,1,1)
-            
         }
         else{
             const jogador = game.state.jogadores[indexJogador]
             context.fillStyle = '#c1c0ff'
             context.fillRect(jogador.x,jogador.y,1,1)
         }
-        
-            
     }
     for(const indexFruta in game.state.frutas){
         
@@ -25,11 +21,8 @@ export default function renderScreen(screen, game, requestAnimationFrame, jogado
         context.fillStyle = '#356343'
         context.fillRect(fruta.x,fruta.y,1,1)
     }
-    
-    
     requestAnimationFrame(() =>{
 
         renderScreen(screen, game, requestAnimationFrame,jogadorID)
     })
-    
 }

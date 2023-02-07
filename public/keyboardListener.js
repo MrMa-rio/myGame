@@ -17,6 +17,9 @@ export default function createKeyboardListener(document){
     function subscribe(observerFunction){
         state.observers.push(observerFunction)
     }
+    function unsubscribe(observerFunction){
+        observers = observers.filter(result => result !== observerFunction )
+    }
     function notifyAll(command){
 
         for(const observerFunction of state.observers){
@@ -39,6 +42,7 @@ export default function createKeyboardListener(document){
     return{
         registerJogadorID,
         subscribe,
+        unsubscribe,
     }
 
 }

@@ -8,15 +8,19 @@
         
         socket.on('connect', () => {
             const jogadorID = socket.id
-            console.log(`Jogaodr conectado no Cliente com o ID:${jogadorID}`)
+            console.log(`Jogador conectado no Cliente com o ID:${jogadorID}`)
             const screen = document.getElementById('screen')
             renderScreen(screen, game, requestAnimationFrame, jogadorID)
-        
+            
+            socket.on('disconnect', () => {
+
+                KeyboardListener.unsubscribe(game.movePlayer)
+            }  );
         })
 
         socket.on('estado', (state) => {
 
-            console.log('Recebendo novas informações...')
+            //console.log('Recebendo novas informações...')
             const jogadorID = socket.id
             game.setState(state)
             KeyboardListener.registerJogadorID(jogadorID)
@@ -29,14 +33,12 @@
         })
         socket.on('add-Jogador', (command) => {
 
-            //console.log(`Recebendo ${command.type} -> ${jogadorID}`)
             game.addJogador(command)
 
         })
         socket.on('remove-Jogador', (command) =>{
-
-            game.removeJogador(command)
-            
+        
+            game.removeJogador(command) //remove o jogador 
 
         })
 
@@ -47,7 +49,6 @@
             if(jogadorID !== command.jogadorID){ // Verificação para que o jogador não receba a propria notificação
                 game.movePlayer(command)
             }
-            
         })
 
         socket.on('add-fruta', (command) => {

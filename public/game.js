@@ -1,24 +1,28 @@
 export default function createGame(){
 
     const state = {
-    jogadores: {},
-    frutas: {},
-    screen: {
-        width: 20,
-        height: 20
-    }
+        jogadores: {},
+        frutas: {},
+        screen: {
+            width: 20,
+            height: 20
+        }
     }
     let observers = []
+    //let playersOnline = Object.keys(game.state.jogadores).length
     
 
     function start(){
         setInterval(addFruta, 5000)
     }
     
+    
     function subscribe(observerFunction){
         observers.push(observerFunction)
     }
-    
+    function unsubscribe(observerFunction){
+        observers = observers.filter(result => result !== observerFunction )
+    }
     function notifyAll(command){
 
         for(const observerFunction of observers){
@@ -71,6 +75,7 @@ export default function createGame(){
         delete state.jogadores[jogadorID]
 
         notifyAll({type: 'remove-Jogador', jogadorID: jogadorID})
+        
     }
 
     function removeFruta(command){
@@ -188,7 +193,7 @@ export default function createGame(){
         state,
         subscribe,
         start,
-        
+        unsubscribe,
         
     }
 }

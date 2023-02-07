@@ -14,7 +14,6 @@ game.subscribe((command) => {
     sockets.emit(command.type, command)
 })
 
-
 app.use(express.static('public'))
 sockets.on('connection', (socket) => {
     
@@ -28,8 +27,8 @@ sockets.on('connection', (socket) => {
         
         game.removeJogador({jogadorID:jogadorID})
         console.log(`Jogador ID:${jogadorID} desconectado`)
+        game.unsubscribe()
         
-    
     })
 
     socket.on('move-jogador', (command) => {
@@ -40,8 +39,6 @@ sockets.on('connection', (socket) => {
     
 })
 
-
 server.listen(3000, () => {
-    console.log('Servindo na Porta 3000');
+    console.log('Servindo na Porta 3000')
 }) 
-
