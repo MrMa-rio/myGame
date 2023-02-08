@@ -29,11 +29,12 @@ div#secondScreen{
     height: 600px;
     border-radius: 0px 0px 20px 20px;
     background-color: #6d6262;
+    
 }
 div#secondScreen #playerScreen{
     width: 480px;
     height: 800px;
-    overflow: auto;
+    
 }
 ::-webkit-scrollbar{
     background-color: #1b1b1b;
@@ -51,12 +52,13 @@ div#secondScreen #playerScreen{
     height: 5px;
 
 }
-.players{
-    
+#players{
+    overflow-y: scroll;
     list-style-type: none;
-    
+    height: 560px;
 }
-.players h1{
+
+h1{
     text-align: center;
     font-size: 2.2em;
     text-decoration: underline;
@@ -69,17 +71,24 @@ div#secondScreen #playerScreen{
     border-radius: 20px 20px 0px 0px;
     margin-bottom: 25px;
 }
-.players > p{
+#players > p{
     width: 460px;
     text-align: center;
     text-indent: 15px;
     font-size: 1.4em;
     color: #fff;
     padding: 10px;
+   
     
 }
-.players p strong{
+#players p strong{
     color: #1b1b1b;
+}
+p#playersOn{
+    box-shadow: 0px 0px 10px #000;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
 }
 .button_{
     display: none;

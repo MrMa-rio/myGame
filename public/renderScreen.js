@@ -1,8 +1,8 @@
-export default function renderScreen(screen, game, requestAnimationFrame, jogadorID){
+export default function renderScreen(screen,playersOn, game, requestAnimationFrame, jogadorID){
 
     const context = screen.getContext('2d')
     context.clearRect(0,0,20,20)
-    
+    playersOn.innerHTML = `Jogadores Online: ${Object.keys(game.state.jogadores).length}`
     for(const indexJogador in game.state.jogadores){
         if(indexJogador == jogadorID){
             const jogador = game.state.jogadores[indexJogador]
@@ -21,8 +21,10 @@ export default function renderScreen(screen, game, requestAnimationFrame, jogado
         context.fillStyle = '#356343'
         context.fillRect(fruta.x,fruta.y,1,1)
     }
+    
+    
     requestAnimationFrame(() =>{
 
-        renderScreen(screen, game, requestAnimationFrame,jogadorID)
+        renderScreen(screen,playersOn, game, requestAnimationFrame,jogadorID)
     })
 }

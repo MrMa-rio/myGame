@@ -1,6 +1,7 @@
         import createKeyboardListener from "./keyboardListener.js"
         import createGame from "./game.js"
         import renderScreen from "./renderScreen.js"
+        
 
         const socket = io()
         const game = createGame()
@@ -10,14 +11,15 @@
             const jogadorID = socket.id
             console.log(`Jogador conectado no Cliente com o ID:${jogadorID}`)
             const screen = document.getElementById('screen')
-            renderScreen(screen, game, requestAnimationFrame, jogadorID)
+            const playersOn = document.getElementById('playersOn')
+            renderScreen(screen,playersOn, game, requestAnimationFrame, jogadorID)
             
             socket.on('disconnect', () => {
 
                 KeyboardListener.unsubscribe(game.movePlayer)
-            }  );
-        })
 
+            })
+        })
         socket.on('estado', (state) => {
 
             //console.log('Recebendo novas informações...')
@@ -34,7 +36,7 @@
         socket.on('add-Jogador', (command) => {
 
             game.addJogador(command)
-
+            
         })
         socket.on('remove-Jogador', (command) =>{
         

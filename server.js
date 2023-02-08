@@ -13,8 +13,9 @@ game.subscribe((command) => {
     console.log(`Emitindo ${command.type}`)
     sockets.emit(command.type, command)
 })
+app.use(express.static('public'));
 
-app.use(express.static('public'))
+
 sockets.on('connection', (socket) => {
     
     const jogadorID = socket.id

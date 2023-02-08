@@ -34,6 +34,7 @@ export default function createGame(){
     function setState(newState){
         Object.assign(state, newState)
     }
+    
     function addJogador(command){
 
         const jogadorID = command.jogadorID
