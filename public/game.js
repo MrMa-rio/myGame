@@ -9,13 +9,49 @@ export default function createGame(){
         }
     }
     let observers = []
-    //let playersOnline = Object.keys(game.state.jogadores).length
+    const point = {
+            jogadorID: {},
+        }
     
-
+     /*   function screenpoint(document,listPLayers,command){
+            listPLayers.replaceChildren()
+                for(const jogador in state.jogadores){
+                    
+                    console.log(command.point[jogador].point)
+                    const listPoint = document.createElement('p')
+                    if(command){
+                         listPoint.innerHTML +=`<strong>ID:</strong> ${jogador} <strong> POINTS: ${command.point[jogador].point} </strong><br>`
+                        
+                    }
+                    else{
+                        listPoint.innerHTML += `<strong>ID:</strong> ${jogador} <strong> POINTS: 0 </strong><br>`
+                    }
+                    listPLayers.appendChild(listPoint)
+                    //console.log(command.point[jogador].point)
+                    
+                }
+                console.log('funcionando')
+                requestAnimationFrame(screenpoint)
+                //listPLayers.replaceChildren()
+                
+        }*/
     function start(){
         setInterval(addFruta, 5000)
     }
     
+    function points(pointPlayer,jogadorID){
+        pointPlayer.point = pointPlayer.point + 1
+        //const point = pointPlayer.point
+        
+        point.jogadorID[jogadorID] = {
+            point: pointPlayer.point
+        }
+        notifyAll({
+            type: 'screen-point',
+            point:point.jogadorID,
+        
+        })
+    }
     
     function subscribe(observerFunction){
         observers.push(observerFunction)
@@ -30,9 +66,9 @@ export default function createGame(){
         }
     }
     
-    
     function setState(newState){
         Object.assign(state, newState)
+
     }
     
     function addJogador(command){
@@ -40,19 +76,21 @@ export default function createGame(){
         const jogadorID = command.jogadorID
         const positionX = 'positionX' in command ? command.positionX : Math.floor(Math.random() * state.screen.width)
         const positionY = 'positionY' in command ? command.positionY : Math.floor(Math.random() * state.screen.height)
-
+        
         state.jogadores[jogadorID] = {
             x: positionX,
             y: positionY,
+            point: 0,
+        
         }
         
         notifyAll({
             type: 'add-Jogador',
             jogadorID: jogadorID,
             positionX: positionX,
-            positionY: positionY
+            positionY: positionY,
+            point: 0
         })
-
     }
 
     function addFruta(command){
@@ -66,7 +104,12 @@ export default function createGame(){
             y: positionY,
         }
 
-        notifyAll({ type: 'add-fruta',frutaID: frutaID, positionX: positionX,positionY: positionY})
+        notifyAll({ 
+            type: 'add-fruta',
+            frutaID: frutaID,
+            positionX: positionX,
+            positionY: positionY
+        })
 
     }
 
@@ -89,7 +132,7 @@ export default function createGame(){
 
     function movePlayer(command){
         notifyAll(command)
-        //console.log(`movendo o ${command.jogadorID} com a tecla ${command.keyPress}`)
+        
         const acceptMoves = {
                 ArrowUp(jogador){
                     
@@ -97,8 +140,6 @@ export default function createGame(){
                     if(jogador.y > 0){
                         jogador.y = jogador.y - 1
                     }
-                    
-                    
                 },
                 w(jogador){
 
@@ -150,37 +191,31 @@ export default function createGame(){
                     }
                 },
             }
+
         const jogador = state.jogadores[command.jogadorID]
         const jogadorID = command.jogadorID
         const keyPress = command.keyPress
+        
         const moveFunction = acceptMoves[keyPress]
+
         if(jogador && moveFunction){
             moveFunction(jogador)
             checkForFruitCollision(jogadorID)
         }
-        
-        
     }
 
     function checkForFruitCollision(jogadorID){
 
-        
-        const jogador = state.jogadores[jogadorID]
-
+        const jogador_ = state.jogadores[jogadorID]
         for(const frutaID in state.frutas){
             const fruta = state.frutas[frutaID]
             
-           // console.log(`Checando ${jogadorID} e ${frutaID}`)
-
-            if(jogador.x === fruta.x && jogador.y === fruta.y){
-                console.log(`Colisao entre ${jogadorID} e ${frutaID}`)
+            if(jogador_.x === fruta.x && jogador_.y === fruta.y){
+                console.log(`Colisao entre ${jogadorID} e ${frutaID}`) //temp
                 removeFruta({frutaID: frutaID})
+                points(state.jogadores[jogadorID],jogadorID)
             }
         }
-
-        
-
-
     }
     
     return{
@@ -192,9 +227,10 @@ export default function createGame(){
         removeFruta,
         movePlayer,
         state,
+        point,
         subscribe,
         start,
         unsubscribe,
-        
+
     }
 }
