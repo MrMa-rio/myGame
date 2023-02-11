@@ -24,10 +24,103 @@ canvas#screen{
     image-rendering: pixelated;
     image-rendering: -moz-crisp-edges;
 }
+div#secondScreen{
+    display: none;
+    position: fixed;
+    left: 50%;
+    border-radius: 20px;
+    background-color: #ffffff49;
+    padding: 10px;
+    width: 270px;
+    transform: translate(-50%,-40vh);
+}
+div#secondScreen #playerScreen{
+    width: 270px;
+    height: fit-content;
+    
+}
+input#icolor{
+        
+        display: block;
+        background: url();
+        margin: auto;
+        width: 30px;
+        height: 30px;
+        border-image: none;
+        border-style: none;
+        border-radius: 30%;
+        transform: translateY(6vh)
+    
+}
+#playerColor{
+    color: #fff;
+    display: block;
+    text-align: center;
+    font-size: 0.7em;
+    transform: translateY(-2vh);
+}
+span.material-symbols-outlined{
+    display: block;
+    position: fixed;
+    background-color: #000;
+    margin-left: 10px;
+    border-radius: 15px;
+    padding: 5px;
+    color: #fff;
+    width: fit-content;
+    height: fit-content;
+    font-size: 1.9em;
+}
+#players{
+    overflow-y: scroll;
+    list-style-type: none;
+    height: 200px;
+    width: fit-content;
+}
+
+h1{
+    text-align: center;
+    font-size: 1em;
+    text-decoration: underline;
+    position: fixed;
+    transform: translateY(-90%);
+    margin-left: -10px;
+    padding: 5px;
+    width: 280px;
+    background-color: #3f3030;
+    border-radius: 20px 20px 0px 0px;
+    margin-bottom: 25px;
+}
+#players > p{
+    width: 265px;
+    text-align: left;
+    
+    font-size: 0.7em;
+    font-weight: bolder;
+    color: #000;
+    padding: 8px;
+   
+    
+}
+#players strong{
+    text-align: right;
+    padding-left: 3px;
+    color: #616161;
+}
+p#playersOn{
+    box-shadow: 0px 0px 10px #0000007c;
+    text-align: center;
+    font-size: 0.7em;
+    margin-top: 15px;
+    border-radius: 6px;
+    width: 265px;
+    font-weight: 700;
+}
+
 div#pad{
    
     background-color: grey;
-    height: 280px;
+    height: 265px;
     border-radius: 30px;
     padding: 5px;
     transform: translateY(22%);
@@ -38,8 +131,10 @@ div#padButtons{
 
     margin-top: 30px;
     margin-left: 12vw;
+    
 
 }
+
 div#positionY{
     
 
@@ -47,14 +142,14 @@ div#positionY{
     display: inline-block;
     max-width: 150px;
     max-height: 280px;
-    left: 25%;
-    transform: translate(50%, -20%);
+    left: 50%;
+    transform: translate(-50%, -12%);
 }
 div#positionY input{
     background-color: rgba(58, 65, 68, 0.274);
     display: block;
-    width: 100px;
-    height: 100px;
+    width: 75px;
+    height: 75px;
     margin-top: 25px;
     border: none;
     border-radius: 35%;
@@ -62,7 +157,7 @@ div#positionY input{
 }
 div#positionY input#y{
 
-    margin-top: 80px;
+    margin-top: 60px;
 }
 div input:hover{
 
@@ -74,21 +169,20 @@ div#positionX{
     display: inline-block;
     width: fit-content;
     height: fit-content;
-    
-    margin-left: 3.2%;
-    transform: translateY(60%);
+    left: 38%;
+    transform: translate(-30%,80%);
 }
 div#positionX input{
     background-color: rgba(58, 65, 68, 0.274);
     
-    width: 100px;
-    height: 100px;
+    width: 75px;
+    height: 75px;
     
     border: none;
     border-radius: 35%;
 }
 div#positionX input#x{
 
-    margin-right: 60px;
+    margin-right: 85px;
     
 }
