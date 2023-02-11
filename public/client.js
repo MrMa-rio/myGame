@@ -2,6 +2,7 @@
         import createGame from "./game.js"
         import renderScreen from "./renderScreen.js"
 
+        alert('Certifique do jogo estar rodando sem a tradução automática do google!')
 
         
        
