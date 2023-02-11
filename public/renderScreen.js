@@ -1,7 +1,7 @@
 export default function renderScreen(screen,playersOn,listPLayers, game, requestAnimationFrame, jogadorID){
 
     const context = screen.getContext('2d')
-    
+    const color = document.getElementById('icolor')
     
     context.clearRect(0,0,20,20)
 
@@ -12,7 +12,7 @@ export default function renderScreen(screen,playersOn,listPLayers, game, request
         
         if(indexJogador == jogadorID){
             const jogador = game.state.jogadores[indexJogador]
-            context.fillStyle = `#abcde0`
+            context.fillStyle = `${color.value}`
             context.fillRect(jogador.x,jogador.y,1,1)
         }
         else{
@@ -33,14 +33,18 @@ export default function renderScreen(screen,playersOn,listPLayers, game, request
                     
         
         const listPoint = document.createElement('p')
+         if(jogador == jogadorID){
+                listPoint.style.color = '#6b3535'
+            }
         if(game.point.jogadorID[jogador]){
 
-             listPoint.innerHTML =`<strong>ID:</strong> ${jogador} <strong> POINTS: ${game.point.jogadorID[jogador].point} </strong><br>`
+            listPoint.innerHTML =`<strong>ID:</strong> ${jogador} <strong> POINTS: ${game.point.jogadorID[jogador].point} </strong><br>`
+           
             
         }
         //else if()
         else{
-            listPoint.innerHTML = `<strong>ID:</strong> ${jogador} <strong> POINTS: 0 </strong><br>`
+            listPoint.innerHTML = `<strong>ID:</strong> ${jogador} <strong> POINTS: ${game.state.jogadores[jogador].point} </strong><br>`
         }
         listPLayers.appendChild(listPoint)
         

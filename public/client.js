@@ -2,26 +2,57 @@
         import createGame from "./game.js"
         import renderScreen from "./renderScreen.js"
 
-        alert('Certifique do jogo estar rodando sem a tradução automática do google!')
+        alert('Certifique do jogo estar rodando sem a tradução automática do Navegador!')
+        
 
+        function menu(){
+            if(secondScreen.style.display == 'block'){
+                 secondScreen.style.display = 'none'
+            }
+            else{
+
+                secondScreen.style.display = 'block'
+            }
+               
+        }
         
        
         const socket = io()
         const game = createGame()
-        const KeyboardListener = createKeyboardListener(document)
+        const input = document.querySelector('input.button_')
+        const KeyboardListener = createKeyboardListener(document,input)
         const playersOn = document.getElementById('playersOn')
         const listPLayers = document.getElementById('players')
         
+        const secondScreen = document.getElementById('secondScreen')
+        const menuPlayer = document.getElementById('menuPlayer')
+        const collect = document.getElementById('audio')
+        const collect100 = document.getElementById('audio100')
+        menuPlayer.addEventListener('click', menu)
+
         
         socket.on('connect', () => {
             const jogadorID = socket.id
             console.log(`Jogador conectado no Cliente com o ID:${jogadorID}`)
             const screen = document.getElementById('screen')
             
+            
 
             socket.on('screen-point', (command) => {
-
+                
                  console.log(command) //temp
+                 for(const points in command){
+                    for(const jogador in game.state.jogadores){
+                        if(command.point[jogador].point % 10 == 0 ){
+                            game.soundPoint(collect100)
+                        }
+                        else{
+                            game.soundPoint(collect)
+                        }
+                        
+                    }
+                 }
+                
                  
              })
             
@@ -39,6 +70,7 @@
 
             const jogadorID = socket.id
             game.setState(state)
+            console.log(state)
             socket.on('point', (result) => console.log(result))
             KeyboardListener.registerJogadorID(jogadorID)
             KeyboardListener.subscribe(game.movePlayer)
@@ -64,8 +96,10 @@
 
             console.log(`Recebendo  ${command.type} -> ${command.jogadorID}`) //temp
             const jogadorID = socket.id
+            
             if(jogadorID !== command.jogadorID){ // Verificação para que o jogador não receba a propria notificação
                 game.movePlayer(command)
+
             }
         })
 

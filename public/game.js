@@ -13,35 +13,15 @@ export default function createGame(){
             jogadorID: {},
         }
     
-     /*   function screenpoint(document,listPLayers,command){
-            listPLayers.replaceChildren()
-                for(const jogador in state.jogadores){
-                    
-                    console.log(command.point[jogador].point)
-                    const listPoint = document.createElement('p')
-                    if(command){
-                         listPoint.innerHTML +=`<strong>ID:</strong> ${jogador} <strong> POINTS: ${command.point[jogador].point} </strong><br>`
-                        
-                    }
-                    else{
-                        listPoint.innerHTML += `<strong>ID:</strong> ${jogador} <strong> POINTS: 0 </strong><br>`
-                    }
-                    listPLayers.appendChild(listPoint)
-                    //console.log(command.point[jogador].point)
-                    
-                }
-                console.log('funcionando')
-                requestAnimationFrame(screenpoint)
-                //listPLayers.replaceChildren()
-                
-        }*/
+  
     function start(){
-        setInterval(addFruta, 5000)
+        setInterval(addFruta, 2500)
     }
-    
+    function soundPoint(audio){
+        audio.play()
+    }
     function points(pointPlayer,jogadorID){
         pointPlayer.point = pointPlayer.point + 1
-        //const point = pointPlayer.point
         
         point.jogadorID[jogadorID] = {
             point: pointPlayer.point
@@ -76,11 +56,11 @@ export default function createGame(){
         const jogadorID = command.jogadorID
         const positionX = 'positionX' in command ? command.positionX : Math.floor(Math.random() * state.screen.width)
         const positionY = 'positionY' in command ? command.positionY : Math.floor(Math.random() * state.screen.height)
-        
+        const points = 'points' in command ? command.point : 0
         state.jogadores[jogadorID] = {
             x: positionX,
             y: positionY,
-            point: 0,
+            point: points,
         
         }
         
@@ -94,22 +74,27 @@ export default function createGame(){
     }
 
     function addFruta(command){
+        if(Object.keys(state.frutas).length < 2){
+            const frutaID = command ? command.frutaID : Math.floor(Math.random() * 10000000)
+            const positionX = command ? command.positionX : Math.floor(Math.random() * state.screen.width)
+            const positionY = command ? command.positionY : Math.floor(Math.random() * state.screen.height)
 
-        const frutaID = command ? command.frutaID : Math.floor(Math.random() * 10000000)
-        const positionX = command ? command.positionX : Math.floor(Math.random() * state.screen.width)
-        const positionY = command ? command.positionY : Math.floor(Math.random() * state.screen.height)
-
-        state.frutas[frutaID] = {
+            state.frutas[frutaID] = {
             x: positionX,
             y: positionY,
         }
-
         notifyAll({ 
             type: 'add-fruta',
             frutaID: frutaID,
             positionX: positionX,
             positionY: positionY
         })
+        }
+        
+
+        
+
+        
 
     }
 
@@ -212,6 +197,7 @@ export default function createGame(){
             
             if(jogador_.x === fruta.x && jogador_.y === fruta.y){
                 console.log(`Colisao entre ${jogadorID} e ${frutaID}`) //temp
+                //soundPoint()
                 removeFruta({frutaID: frutaID})
                 points(state.jogadores[jogadorID],jogadorID)
             }
@@ -231,6 +217,7 @@ export default function createGame(){
         subscribe,
         start,
         unsubscribe,
+        soundPoint,
 
     }
 }

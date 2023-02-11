@@ -20,7 +20,27 @@ canvas#screen{
     image-rendering: crisp-edges;
     image-rendering: pixelated;
     image-rendering: -moz-crisp-edges;
+    border-radius: 30px;
+}
+input#icolor{
+        
+    display: block;
+    background: url();
     
+    width: 60px;
+    height: 60px;
+    border-image: none;
+    border-style: none;
+    border-radius: 30%;
+    transform: translate(61vw, -15vh)
+
+}
+#playerColor{
+    display: block;
+    color: #fff;
+    transform: translate(61vw, -15vh);
+
+
 }
 div#secondScreen{
     position: absolute;

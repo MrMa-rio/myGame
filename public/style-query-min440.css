@@ -23,7 +23,94 @@ canvas#screen{
 }
 div#secondScreen{
     display: none;
+    position: fixed;
+    left: 50%;
+    border-radius: 20px;
+    background-color: #ffffff91;
+    padding: 10px;
+    width: 310px;
+    transform: translate(-50%,-40vh);
 }
+div#secondScreen #playerScreen{
+    width: 310px;
+    height: fit-content;
+    
+}
+input#icolor{
+        
+        display: block;
+        background: url();
+        margin: auto;
+        width: 40px;
+        height: 40px;
+        border-image: none;
+        border-style: none;
+        border-radius: 30%;
+        transform: translateY(6vh)
+    
+}
+#playerColor{
+    color: #fff;
+    text-align: center;
+}
+span.material-symbols-outlined{
+    display: block;
+    position: fixed;
+    background-color: #000;
+    margin-left: 10px;
+    border-radius: 15px;
+    padding: 5px;
+    color: #fff;
+    width: fit-content;
+    height: fit-content;
+    font-size: 2.4em;
+}
+#players{
+    overflow-y: scroll;
+    list-style-type: none;
+    height: 250px;
+    width: fit-content;
+}
+
+h1{
+    text-align: center;
+    font-size: 1.4em;
+    text-decoration: underline;
+    position: fixed;
+    transform: translateY(-90%);
+    margin-left: -10px;
+    padding: 5px;
+    width: 325px;
+    background-color: #3f3030;
+    border-radius: 20px 20px 0px 0px;
+    margin-bottom: 25px;
+}
+#players > p{
+    width: 310px;
+    text-align: left;
+    
+    font-size: 0.9em;
+    font-weight: bolder;
+    color: #000;
+    padding: 8px;
+   
+    
+}
+#players strong{
+    text-align: right;
+    padding-left: 3px;
+    color: #616161;
+}
+p#playersOn{
+    box-shadow: 0px 0px 10px #0000007c;
+    text-align: center;
+    font-size: 1em;
+    margin-top: 15px;
+    border-radius: 6px;
+    width: 310px;
+    font-weight: 700;
+}
+
 div#pad{
    
     background-color: grey;
@@ -36,8 +123,12 @@ div#pad{
 }
 div#padButtons{
 
+
     margin-top: 30px;
-    margin-left: 12vw;
+    margin-left: auto;
+    margin-right: auto;
+    
+    
 
 }
 div#positionY{
@@ -47,8 +138,8 @@ div#positionY{
     display: inline-block;
     max-width: 150px;
     max-height: 280px;
-    left: 25%;
-    transform: translate(78%, -13%);
+    left: 50%;
+    transform: translate(-50%, -13%);
 }
 div#positionY input{
     background-color: rgba(58, 65, 68, 0.274);
@@ -71,12 +162,11 @@ div input:hover{
 }
 div#positionX{
     position: absolute;
-    display: inline-block;
+    display: block;
     width: fit-content;
     height: fit-content;
-    
-    margin-left: 4%;
-    transform: translateY(80%);
+    margin-left: 40%;
+    transform: translate(-34%,80%);
 }
 div#positionX input{
     background-color: rgba(58, 65, 68, 0.274);
@@ -89,6 +179,6 @@ div#positionX input{
 }
 div#positionX input#x{
 
-    margin-right: 130px;
+    margin-right: 100px;
     
 }

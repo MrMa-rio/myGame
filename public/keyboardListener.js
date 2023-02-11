@@ -1,8 +1,12 @@
-export default function createKeyboardListener(document){
-   
+export default function createKeyboardListener(document,input){
+    
     document.addEventListener('keydown', handleKeydown)
     document.addEventListener('click', (result) => {
-        handleKeydown(`Arrow${result.target.value}`)
+        
+        if(result.target.className == 'button_'){
+            handleKeydown(`Arrow${result.target.value}`)
+        }
+        
     } )
     const state = {
         observers: [],

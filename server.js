@@ -7,8 +7,7 @@ const server = http.createServer(app)
 const sockets = new Server(server)
 
 const game = createGame()
-
-game.start()
+     
 
 game.subscribe((command) => {
     console.log(`Emitindo ${command.type}`)
@@ -18,10 +17,11 @@ app.use(express.static('public'))
 
 sockets.on('connection', (socket) => {
     
+
     const jogadorID = socket.id
     console.log(`Jogador conectado no servidor com o ID:${jogadorID}`);
     game.addJogador({jogadorID: jogadorID})
-     
+    game.start()
     socket.emit('estado', game.state)
     socket.emit('points', game.point.jogadorID)
     
@@ -38,6 +38,7 @@ sockets.on('connection', (socket) => {
     socket.on('move-jogador', (command) => {
         command.jogadorID = jogadorID
         command.type = 'move-jogador'
+        
         game.movePlayer(command)
     })
 
@@ -48,6 +49,8 @@ sockets.on('connection', (socket) => {
     })
     
 })
+
+   
 
 server.listen(3000, () => {
     console.log('Servindo na Porta 3000')

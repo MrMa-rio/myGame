@@ -6,12 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style-query.css" media="screen and (min-width: 790px)">
     <link rel="stylesheet" href="style-query-min440.css"media="screen and (min-width: 440px) and (max-width: 789px)">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="style.css"media="screen and (max-width: 440px)">
     <script src="/socket.io/socket.io.js"></script>
     <title>myGame</title>
 </head>
 <body>
     <canvas width="20" height="20" id="screen"></canvas>
+    
+    <audio id="audio" src="sound/collect-sound.mp3"></audio>
+    <audio id="audio100" src="sound/collect-100-green.mp3"></audio>
+    
     <div id="secondScreen">
         <div id="playerScreen">
             <h1>Jogadores</h1>
@@ -31,11 +36,19 @@
 
         </div>
     </div>
+    <div>
+        <input type="color" name="color" id="icolor" >
+        <p id="playerColor">PlayerColor</p>
+        <span id="menuPlayer"  class="material-symbols-outlined">
+            menu
+        </span>
+    </div>
     <div id="pad">
         <div id="padButtons">
             <div id="positionY">
                 <input class="button_" type="button" value="Up">
                 <input id="y" class="button_" type="button" value="Down">
+                
             </div>
             <div id="positionX">
                 <input id="x" class="button_" type="button" value="Left">
