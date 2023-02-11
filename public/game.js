@@ -125,12 +125,18 @@ export default function createGame(){
                     if(jogador.y > 0){
                         jogador.y = jogador.y - 1
                     }
+                    else{
+                        jogador.y = jogador.y + (state.screen.height - 1)
+                    }
                 },
                 w(jogador){
 
                    // console.log(`${jogador} movendo para cima`)
                     if(jogador.y > 0){
                         jogador.y = jogador.y - 1
+                    }
+                    else{
+                        jogador.y = jogador.y + (state.screen.height - 1)
                     }
                 },
                 ArrowDown(jogador){
@@ -139,12 +145,18 @@ export default function createGame(){
                     if(jogador.y + 1 < state.screen.height){
                         jogador.y = jogador.y + 1
                     }
+                    else{
+                        jogador.y = 0
+                    }
                 },
                 s(jogador){
 
                    // console.log(`${jogador} movendo para baixo`)
                     if(jogador.y + 1 < state.screen.height){
                         jogador.y = jogador.y + 1
+                    }
+                    else{
+                        jogador.y = 0
                     }
                 },
                 ArrowLeft(jogador){
@@ -153,12 +165,18 @@ export default function createGame(){
                     if(jogador.x > 0){
                         jogador.x = jogador.x - 1
                     }
+                    else{
+                        jogador.x = jogador.x + (state.screen.width - 1)
+                    }
                 },
                 a(jogador){
 
                     //console.log(`${jogador} movendo para esquerda`)
                     if(jogador.x > 0){
                         jogador.x = jogador.x - 1
+                    }
+                    else{
+                        jogador.x = jogador.x + (state.screen.width - 1)
                     }
                 },
                 ArrowRight(jogador){
@@ -167,12 +185,18 @@ export default function createGame(){
                     if(jogador.x + 1 < state.screen.width){
                         jogador.x = jogador.x + 1
                     }
+                    else{
+                        jogador.x = 0
+                    }
                 },
                 d(jogador){
 
                  //  console.log(`${jogador} movendo para direita`)
                     if(jogador.x + 1 < state.screen.width){
                         jogador.x = jogador.x + 1
+                    }
+                    else{
+                        jogador.x = 0
                     }
                 },
             }
