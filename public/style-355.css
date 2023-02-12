@@ -5,31 +5,31 @@
     padding: 0px;
 }
 body{
-    background-color: #1b1b1b;
+    background-color: #2f8a4a;
 }
-div#secondScreen{
-    display: none;
-}
+
 input#icolor{
     border-radius: 50%;
 }
 canvas#screen{
-    border: 10px solid rgb(107, 88, 88);
-    background-color: #6d6262;
-    width: 92vw;
-    height: 45vh;
+    border-radius: 20px;
+    width: 80vw;
+    height: 40vh;
     display: block;
     margin: auto;
     image-rendering: crisp-edges;
     image-rendering: pixelated;
     image-rendering: -moz-crisp-edges;
+    border: 10px solid #D48D3D;
+    box-shadow: 0px 0px 15px #0000008c;
+    background-color: #3B89F6;
 }
 div#secondScreen{
     display: none;
     position: fixed;
     left: 50%;
     border-radius: 20px;
-    background-color: #ffffff49;
+    background-color: #b6844bc7;
     padding: 10px;
     width: 270px;
     transform: translate(-50%,-40vh);
@@ -87,17 +87,17 @@ h1{
     margin-left: -10px;
     padding: 5px;
     width: 280px;
-    background-color: #3f3030;
+    background-color: #c21f0d;
     border-radius: 20px 20px 0px 0px;
     margin-bottom: 25px;
 }
 #players > p{
     width: 265px;
     text-align: left;
-    
+    background-color: #0000007a;
+    color: #ffffff;
     font-size: 0.7em;
     font-weight: bolder;
-    color: #000;
     padding: 8px;
    
     
@@ -105,7 +105,7 @@ h1{
 #players strong{
     text-align: right;
     padding-left: 3px;
-    color: #616161;
+    color: #dd2828;
 }
 p#playersOn{
     box-shadow: 0px 0px 10px #0000007c;
@@ -119,12 +119,13 @@ p#playersOn{
 
 div#pad{
    
-    background-color: grey;
+    
     height: 175px;
     border-radius: 30px;
     padding: 5px;
     transform: translateY(22%);
-    box-shadow: 0px 0px 30px #000;
+    background-color: #b6844b;
+    box-shadow: 0px 0px 10px #00000088;
     
 }
 div#padButtons{
@@ -146,7 +147,8 @@ div#positionY{
     transform: translate(-50%, -25%);
 }
 div#positionY input{
-    background-color: rgba(58, 65, 68, 0.274);
+    background-color:#c21f0d;
+    box-shadow: 0px 0px 10px #00000054;
     display: block;
     width: 63px;
     height: 63px;
@@ -173,7 +175,8 @@ div#positionX{
     transform: translate(-30%,50%);
 }
 div#positionX input{
-    background-color: rgba(58, 65, 68, 0.274);
+    background-color: #3B89F6;
+    box-shadow: 0px 0px 10px #00000052;
     
     width: 63px;
     height: 63px;

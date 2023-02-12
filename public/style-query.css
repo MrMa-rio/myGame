@@ -7,13 +7,11 @@
     font-variant: small-caps;
 }
 body{
-    background-color: #101010;
+    background-color: #2f8a4a;
 }
 canvas#screen{
-    border: 10px solid rgb(61, 51, 51);
-    background-color: #6d6262;
-    width: 500px;
-    height: 500px;
+    width: 600px;
+    height: 600px;
     transform: translate(-30%,20%);
     display: block;
     margin: auto;
@@ -21,6 +19,9 @@ canvas#screen{
     image-rendering: pixelated;
     image-rendering: -moz-crisp-edges;
     border-radius: 30px;
+    border: 10px solid #D48D3D;
+    box-shadow: 0px 0px 15px #0000008c;
+    background-color: #3B89F6;
 }
 input#icolor{
         
@@ -48,7 +49,7 @@ div#secondScreen{
     width: 480px;
     height: 600px;
     border-radius: 0px 0px 20px 20px;
-    background-color: #6d6262;
+    background-color: #b6844b;
     
 }
 div#secondScreen #playerScreen{
@@ -58,24 +59,24 @@ div#secondScreen #playerScreen{
 }
 ::-webkit-scrollbar{
     background-color: #1b1b1b;
-    width: 10px;
+    width: 0px;
     height: 0px;
 }
 ::-webkit-scrollbar-thumb{
 
-    background-color: #312219;
+    background-color: #92463e;
 
 }
 ::-webkit-scrollbar-track{
     
-    background-color: #383636;
+    background-color: #92463e;
     height: 5px;
 
 }
 #players{
     overflow-y: scroll;
     list-style-type: none;
-    height: 560px;
+    height: 550px;
 }
 
 h1{
@@ -87,7 +88,7 @@ h1{
     margin-left: 0px;
     padding: 5px;
     width: 470px;
-    background-color: #3b3535;
+    background-color: #92463e;
     border-radius: 20px 20px 0px 0px;
     margin-bottom: 25px;
 }
@@ -109,6 +110,9 @@ p#playersOn{
     text-align: center;
     font-size: 30px;
     font-weight: 700;
+    width: 440px;
+    border-radius: 10px;
+    margin: auto;
 }
 .button_{
     display: none;

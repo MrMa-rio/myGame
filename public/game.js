@@ -4,8 +4,8 @@ export default function createGame(){
         jogadores: {},
         frutas: {},
         screen: {
-            width: 20,
-            height: 20
+            width: 30,
+            height: 30
         }
     }
     let observers = []
@@ -15,7 +15,7 @@ export default function createGame(){
     
   
     function start(){
-        setInterval(addFruta, 2500)
+        setInterval(addFruta, 100)
     }
     function soundPoint(audio){
         audio.play()
@@ -74,7 +74,7 @@ export default function createGame(){
     }
 
     function addFruta(command){
-        if(Object.keys(state.frutas).length < 2){
+        if(Object.keys(state.frutas).length < 30){
             const frutaID = command ? command.frutaID : Math.floor(Math.random() * 10000000)
             const positionX = command ? command.positionX : Math.floor(Math.random() * state.screen.width)
             const positionY = command ? command.positionY : Math.floor(Math.random() * state.screen.height)
@@ -224,6 +224,7 @@ export default function createGame(){
                 //soundPoint()
                 removeFruta({frutaID: frutaID})
                 points(state.jogadores[jogadorID],jogadorID)
+                
             }
         }
     }

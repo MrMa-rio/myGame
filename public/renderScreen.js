@@ -2,11 +2,9 @@ export default function renderScreen(screen,playersOn,listPLayers, game, request
 
     const context = screen.getContext('2d')
     const color = document.getElementById('icolor')
-    
-    context.clearRect(0,0,20,20)
+    context.clearRect(0,0,60,60)
 
     playersOn.innerHTML = `Jogadores Online: ${Object.keys(game.state.jogadores).length}`
-    
     
     for(const indexJogador in game.state.jogadores){
         
@@ -24,7 +22,7 @@ export default function renderScreen(screen,playersOn,listPLayers, game, request
     for(const indexFruta in game.state.frutas){
         
         const fruta = game.state.frutas[indexFruta]
-        context.fillStyle = '#356343'
+        context.fillStyle = '#FDD000'
         context.fillRect(fruta.x,fruta.y,1,1)
     }
     listPLayers.replaceChildren()
@@ -34,7 +32,7 @@ export default function renderScreen(screen,playersOn,listPLayers, game, request
         
         const listPoint = document.createElement('p')
          if(jogador == jogadorID){
-                listPoint.style.color = '#6b3535'
+                listPoint.style.color = '#FDD000'
             }
         if(game.point.jogadorID[jogador]){
 

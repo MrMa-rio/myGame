@@ -43,21 +43,18 @@
                  console.log(command) //temp
                  for(const points in command){
                     for(const jogador in game.state.jogadores){
-                        if(command.point[jogador].point % 10 == 0 ){
+                        
+                        if(command.point[jogador] && command.point[jogador].point % 10 == 0 ){
                             game.soundPoint(collect100)
                         }
-                        else{
-                            game.soundPoint(collect)
-                        }
+                    
+                        game.soundPoint(collect)
+                        
                         
                     }
                  }
-                
-                 
              })
             
-            
-
             renderScreen(screen,playersOn,listPLayers, game, requestAnimationFrame, jogadorID)
             socket.on('disconnect', () => {
 
@@ -96,7 +93,6 @@
 
             console.log(`Recebendo  ${command.type} -> ${command.jogadorID}`) //temp
             const jogadorID = socket.id
-            
             if(jogadorID !== command.jogadorID){ // Verificação para que o jogador não receba a propria notificação
                 game.movePlayer(command)
 
