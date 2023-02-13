@@ -117,3 +117,6 @@ p#playersOn{
 .button_{
     display: none;
 }
+span.material-symbols-outlined{
+    display: none;
+}
