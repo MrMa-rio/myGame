@@ -1,23 +1,21 @@
-export default function createKeyboardListener(document,input){
+export default function createKeyboardListener(document){
     
+    let lastKeypressed = []
     document.addEventListener('keydown', handleKeydown)
     document.addEventListener('click', (result) => {
         
         if(result.target.className == 'button_'){
             handleKeydown(`Arrow${result.target.value}`)
         }
-        
-    } )
+    })
     const state = {
         observers: [],
         jogadorID: null,
     }
-
     function registerJogadorID(jogadorID){
 
         state.jogadorID = jogadorID
     }
-
     function subscribe(observerFunction){
         state.observers.push(observerFunction)
     }
@@ -39,9 +37,11 @@ export default function createKeyboardListener(document,input){
             jogadorID: state.jogadorID,
             keyPress,
         }
-    
-        notifyAll(command)
         
+        if(command){
+            
+            notifyAll(command)
+        }
     }
     return{
         registerJogadorID,

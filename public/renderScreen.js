@@ -3,7 +3,6 @@ export default function renderScreen(screen,playersOn,listPLayers, game, request
     const context = screen.getContext('2d')
     const color = document.getElementById('icolor')
     context.clearRect(0,0,60,60)
-
     playersOn.innerHTML = `Jogadores Online: ${Object.keys(game.state.jogadores).length}`
     
     for(const indexJogador in game.state.jogadores){
@@ -29,7 +28,6 @@ export default function renderScreen(screen,playersOn,listPLayers, game, request
 
     for(const jogador in game.state.jogadores){
                     
-        
         const listPoint = document.createElement('p')
          if(jogador == jogadorID){
                 listPoint.style.color = '#FDD000'
@@ -38,20 +36,14 @@ export default function renderScreen(screen,playersOn,listPLayers, game, request
 
             listPoint.innerHTML =`<strong>ID:</strong> ${jogador} <strong> POINTS: ${game.point.jogadorID[jogador].point} </strong><br>`
            
-            
         }
-        //else if()
         else{
             listPoint.innerHTML = `<strong>ID:</strong> ${jogador} <strong> POINTS: ${game.state.jogadores[jogador].point} </strong><br>`
         }
         listPLayers.appendChild(listPoint)
-        
-        
     }
-    
     requestAnimationFrame(() =>{
 
         renderScreen(screen,playersOn,listPLayers, game, requestAnimationFrame,jogadorID)
-        
     })
 }

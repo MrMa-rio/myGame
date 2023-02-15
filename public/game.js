@@ -13,7 +13,6 @@ export default function createGame(){
             jogadorID: {},
         }
     
-  
     function start(){
         setInterval(addFruta, 100)
     }
@@ -32,7 +31,6 @@ export default function createGame(){
         
         })
     }
-    
     function subscribe(observerFunction){
         observers.push(observerFunction)
     }
@@ -45,12 +43,9 @@ export default function createGame(){
             observerFunction(command)
         }
     }
-    
     function setState(newState){
         Object.assign(state, newState)
-
     }
-    
     function addJogador(command){
 
         const jogadorID = command.jogadorID
@@ -72,9 +67,8 @@ export default function createGame(){
             point: 0
         })
     }
-
     function addFruta(command){
-        if(Object.keys(state.frutas).length < 30){
+        if(Object.keys(state.frutas).length < 5){
             const frutaID = command ? command.frutaID : Math.floor(Math.random() * 10000000)
             const positionX = command ? command.positionX : Math.floor(Math.random() * state.screen.width)
             const positionY = command ? command.positionY : Math.floor(Math.random() * state.screen.height)
@@ -82,31 +76,22 @@ export default function createGame(){
             state.frutas[frutaID] = {
             x: positionX,
             y: positionY,
+            }
+            notifyAll({ 
+                type: 'add-fruta',
+                frutaID: frutaID,
+                positionX: positionX,
+                positionY: positionY
+            })
         }
-        notifyAll({ 
-            type: 'add-fruta',
-            frutaID: frutaID,
-            positionX: positionX,
-            positionY: positionY
-        })
-        }
-        
-
-        
-
-        
-
     }
 
     function removeJogador(command){
 
         const jogadorID = command.jogadorID
         delete state.jogadores[jogadorID]
-
         notifyAll({type: 'remove-Jogador', jogadorID: jogadorID})
-        
     }
-
     function removeFruta(command){
 
         const frutaID = command.frutaID
@@ -114,97 +99,93 @@ export default function createGame(){
 
         notifyAll({ type:'remove-fruta', frutaID:frutaID})
     }
-
     function movePlayer(command){
-        notifyAll(command)
+        
+         notifyAll(command)
         
         const acceptMoves = {
-                ArrowUp(jogador){
+
+            ArrowUp(jogador){
+                
+                
+                if(jogador.y > 0){
+
+                    jogador.y = jogador.y - 1
                     
-                  //  console.log(`${jogador} movendo para cima`)
-                    if(jogador.y > 0){
-                        jogador.y = jogador.y - 1
-                    }
-                    else{
-                        jogador.y = jogador.y + (state.screen.height - 1)
-                    }
-                },
-                w(jogador){
+                }
+                else{
 
-                   // console.log(`${jogador} movendo para cima`)
-                    if(jogador.y > 0){
-                        jogador.y = jogador.y - 1
-                    }
-                    else{
-                        jogador.y = jogador.y + (state.screen.height - 1)
-                    }
-                },
-                ArrowDown(jogador){
+                    jogador.y = jogador.y + (state.screen.height - 1)
+                }
+            },
+            w(jogador){
 
-                   // console.log(`${jogador} movendo para baixo`)
-                    if(jogador.y + 1 < state.screen.height){
-                        jogador.y = jogador.y + 1
-                    }
-                    else{
-                        jogador.y = 0
-                    }
-                },
-                s(jogador){
+                if(jogador.y > 0){
+                    jogador.y = jogador.y - 1
+                }
+                else{
+                    jogador.y = jogador.y + (state.screen.height - 1)
+                }
+            },
+            ArrowDown(jogador){
 
-                   // console.log(`${jogador} movendo para baixo`)
-                    if(jogador.y + 1 < state.screen.height){
-                        jogador.y = jogador.y + 1
-                    }
-                    else{
-                        jogador.y = 0
-                    }
-                },
-                ArrowLeft(jogador){
+                if(jogador.y + 1 < state.screen.height){
+                    jogador.y = jogador.y + 1
+                }
+                else{
+                    jogador.y = 0
+                }
+            },
+            s(jogador){
 
-                    //console.log(`${jogador} movendo para esquerda`)
-                    if(jogador.x > 0){
-                        jogador.x = jogador.x - 1
-                    }
-                    else{
-                        jogador.x = jogador.x + (state.screen.width - 1)
-                    }
-                },
-                a(jogador){
+                if(jogador.y + 1 < state.screen.height){
+                    jogador.y = jogador.y + 1
+                }
+                else{
+                    jogador.y = 0
+                }
+            },
+            ArrowLeft(jogador){
 
-                    //console.log(`${jogador} movendo para esquerda`)
-                    if(jogador.x > 0){
-                        jogador.x = jogador.x - 1
-                    }
-                    else{
-                        jogador.x = jogador.x + (state.screen.width - 1)
-                    }
-                },
-                ArrowRight(jogador){
+                if(jogador.x > 0){
+                    jogador.x = jogador.x - 1
+                }
+                else{
+                    jogador.x = jogador.x + (state.screen.width - 1)
+                }
+            },
+            a(jogador){
 
-                  //  console.log(`${jogador} movendo para direita`)
-                    if(jogador.x + 1 < state.screen.width){
-                        jogador.x = jogador.x + 1
-                    }
-                    else{
-                        jogador.x = 0
-                    }
-                },
-                d(jogador){
+                if(jogador.x > 0){
+                    jogador.x = jogador.x - 1
+                }
+                else{
+                    jogador.x = jogador.x + (state.screen.width - 1)
+                }
+            },
+            ArrowRight(jogador){
 
-                 //  console.log(`${jogador} movendo para direita`)
-                    if(jogador.x + 1 < state.screen.width){
-                        jogador.x = jogador.x + 1
-                    }
-                    else{
-                        jogador.x = 0
-                    }
-                },
-            }
+                if(jogador.x + 1 < state.screen.width){
+                    jogador.x = jogador.x + 1
+                }
+                else{
+                    jogador.x = 0
+                }
+            },
+            d(jogador){
+
+                if(jogador.x + 1 < state.screen.width){
+                    jogador.x = jogador.x + 1
+                }
+                else{
+                    jogador.x = 0
+                }
+            },
+        }
 
         const jogador = state.jogadores[command.jogadorID]
         const jogadorID = command.jogadorID
         const keyPress = command.keyPress
-        
         const moveFunction = acceptMoves[keyPress]
 
         if(jogador && moveFunction){
@@ -243,6 +224,5 @@ export default function createGame(){
         start,
         unsubscribe,
         soundPoint,
-
     }
 }

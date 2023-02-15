@@ -38,15 +38,15 @@ div#secondScreen #playerScreen{
 }
 input#icolor{
         
-        display: block;
-        background: url();
-        margin: auto;
-        width: 40px;
-        height: 40px;
-        border-image: none;
-        border-style: none;
-        border-radius: 30%;
-        transform: translateY(6vh)
+    display: block;
+    background: url();
+    margin: auto;
+    width: 40px;
+    height: 40px;
+    border-image: none;
+    border-style: none;
+    border-radius: 30%;
+    transform: translateY(6vh)
     
 }
 #playerColor{
